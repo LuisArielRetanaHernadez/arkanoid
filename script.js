@@ -33,8 +33,12 @@ const collisionDetection = () => {
 const ballMovement = () => {}
 const paddleMovement = () => {}
 
-const dram = () => {
+const cleanCanvas = () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
+const dram = () => {
+  cleanCanvas()
   // hay que dibujar los elementos
   dramBall()
   dramPaddle()
