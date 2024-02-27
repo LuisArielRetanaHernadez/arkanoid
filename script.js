@@ -20,6 +20,7 @@ const dramBall = () => {
   ctx.arc(ejeX, ejeY, ballRadius, 0, Math.PI * 2);
   ctx.fillStyle = '#F72798';
   ctx.fill();
+  ctx.closePath();
 }
 const dramPaddle = () => {}
 const dramBricks = () => {}
