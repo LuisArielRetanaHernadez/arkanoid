@@ -31,7 +31,7 @@ const brickWidth = 40
 const brickHeight = 20
 const brickPadding = 2
 const brickOffsetTop = 30
-const brickOffsetLeft = 30
+const brickOffsetLeft = 150
 const bricks = []
 
 const BRICK_STATUS = {
