@@ -1,5 +1,5 @@
 const canvas = document.querySelector('canvas');
-ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 canvas.width = 800;
 canvas.height = 500;
@@ -15,7 +15,12 @@ const speedx = 2;
 const speedY = -2;
 
 
-const dramBall = () => {}
+const dramBall = () => {
+  ctx.beginPath();
+  ctx.arc(ejeX, ejeY, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = '#F72798';
+  ctx.fill();
+}
 const dramPaddle = () => {}
 const dramBricks = () => {}
 
@@ -37,3 +42,5 @@ const dram = () => {
   
   window.requestAnimationFrame(dram);
 }
+
+dram();
