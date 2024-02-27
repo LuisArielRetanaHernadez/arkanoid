@@ -34,6 +34,11 @@ const brickOffsetTop = 30
 const brickOffsetLeft = 30
 const bricks = []
 
+const BRICK_STATUS = {
+  ACTIVE: 1,
+  DESTROYED: 0
+}
+
 const dramBall = () => {
   ctx.beginPath();
   ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
