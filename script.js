@@ -42,7 +42,7 @@ const BRICK_STATUS = {
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = []
   for (let r = 0; r < brickRowCount; r++) {
-    const bricjX = c * (brickWidth = brickPadding) + brickOffsetLeft
+    const bricjX = c * (brickWidth + brickPadding) + brickOffsetLeft
     const brickY = r * (brickHeight + brickPadding) + brickOffsetTop
     bricks[c][r] = { x: bricjX, y: brickY, status: BRICK_STATUS.ACTIVE, color: '#0079FF' }
   }
@@ -59,7 +59,17 @@ const dramPaddle = () => {
   ctx.fillStyle = '#0079FF';
   ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
 }
-const dramBricks = () => {}
+const dramBricks = () => {
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      const brick = bricks[c][r]
+      if (brick.status === BRICK_STATUS.ACTIVE) {
+        ctx.fillStyle = brick.color
+        ctx.fillRect(brick.x, brick.y, brickWidth, brickHeight)
+      }
+    }
+  }
+}
 
 const collisionDetection = () => {
   if (ballX + speedx > canvas.width - ballRadius || ballX + speedx < ballRadius) {
