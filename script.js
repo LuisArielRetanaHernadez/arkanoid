@@ -66,6 +66,7 @@ const dramBricks = () => {
       if (brick.status === BRICK_STATUS.ACTIVE) {
         ctx.fillStyle = brick.color
         ctx.fillRect(brick.x, brick.y, brickWidth, brickHeight)
+        ctx.fill()
       }
     }
   }
