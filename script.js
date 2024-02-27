@@ -84,6 +84,18 @@ const collisionDetection = () => {
   // if (ejeY + speedY > canvas.height - ballRadius) {
   //   document.location.reload();
   // }
+
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      const brick = bricks[c][r]
+      if (brick.status === BRICK_STATUS.ACTIVE) {
+        if (ballX > brick.x && ballX < brick.x + brickWidth && ballY > brick.y && ballY < brick.y + brickHeight) {
+          speedY = -speedY
+          brick.status = BRICK_STATUS.DESTROYED
+        }
+      }
+    }
+  }
  
 }
 const ballMovement = () => {
