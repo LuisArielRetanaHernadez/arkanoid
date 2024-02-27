@@ -55,6 +55,15 @@ const collisionDetection = () => {
 const ballMovement = () => {
   ballX += speedx;
   ballY += speedY;
+  
+  const isBallSameXAsPaddle = ballX > paddleX && ballX < paddleX + paddleWidth
+  const isBallTouchingPaddle = ballY + speedY > paddleY
+
+  if (isBallSameXAsPaddle && isBallTouchingPaddle) {
+    speedY = -speedY;
+  }
+
+  console.log('ballY + speedY ', ballY + speedY, ' paddleY ', paddleY)
 
 }
 const paddleMovement = () => {
