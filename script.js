@@ -24,6 +24,15 @@ let paddleY = canvas.height - paddleHeight;
 let rightPressed = false;
 let leftPressed = false;
 
+// variables ladrillos
+const brickRowCount = 5
+const brickColumnCount = 12
+const brickWidth = 20
+const brickHeight = 12
+const brickPadding = 2
+const brickOffsetTop = 30
+const brickOffsetLeft = 30
+
 
 const dramBall = () => {
   ctx.beginPath();
@@ -55,7 +64,7 @@ const collisionDetection = () => {
 const ballMovement = () => {
   ballX += speedx;
   ballY += speedY;
-  
+
   const isBallSameXAsPaddle = ballX > paddleX && ballX < paddleX + paddleWidth
   const isBallTouchingPaddle = ballY + speedY > paddleY
 
