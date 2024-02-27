@@ -21,6 +21,9 @@ const paddleWidth = 75;
 let paddleX = (canvas.width - paddleWidth) / 2;
 let paddleY = canvas.height - paddleHeight;
 
+let rightPressed = false;
+let leftPressed = false;
+
 
 const dramBall = () => {
   ctx.beginPath();
@@ -57,6 +60,33 @@ const paddleMovement = () => {}
 
 const cleanCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+const initEvents = () => {
+  document.addEventListener('keydown' , keyDowndHandler)
+  document.addEventListener('keyup', keyUpHandler)
+
+  const keyDowndHandler = (e) => {
+    const { key } = e;
+    if (key === 'ArrowRight' || key === 'Right') {
+      rightPressed = true;
+    } 
+    else
+    if (key === 'ArrowLeft' || key === 'Left') {
+      leftPressed = true;
+    }
+  }
+
+  const keyUpHandler = (e) => {
+    const { key } = e;
+    if (key === 'ArrowRight' || key === 'Right') {
+      rightPressed = false;
+    }
+    else
+    if (key === 'ArrowLeft' || key === 'Left') {
+      leftPressed = false;
+    }
+  }
 }
 
 const dram = () => {
