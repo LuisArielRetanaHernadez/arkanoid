@@ -188,7 +188,7 @@ const dram = () => {
 
   // pelota
   dramBall()
-  ballMovement()
+  // ballMovement()
 
   // paleta
   dramPaddle()
@@ -202,4 +202,4 @@ const dram = () => {
   window.requestAnimationFrame(dram);
 }
 
-// dram();
+dram();
