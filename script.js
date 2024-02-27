@@ -6,6 +6,7 @@ canvas.height = 500;
 
 const ballRadius = 5;
 
+// -------------- variables de la pelota
 // posicion de la pelota
 let ballX = canvas.width / 2;
 let ballY = canvas.height - 30;
@@ -18,13 +19,14 @@ let speedY = -2;
 const paddleHeight = 10;
 const paddleWidth = 75;
 
+// -------------- variables de la paleta --------------
 let paddleX = (canvas.width - paddleWidth) / 2;
 let paddleY = canvas.height - paddleHeight;
 
 let rightPressed = false;
 let leftPressed = false;
 
-// variables ladrillos
+// -------------- variables ladrillos --------------
 const brickRowCount = 5
 const brickColumnCount = 12
 const brickWidth = 40
@@ -39,6 +41,8 @@ const BRICK_STATUS = {
   DESTROYED: 0
 }
 
+// >>>>>>>>>>> ladrillos
+
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = []
   for (let r = 0; r < brickRowCount; r++) {
@@ -48,17 +52,6 @@ for (let c = 0; c < brickColumnCount; c++) {
   }
 }
 
-const dramBall = () => {
-  ctx.beginPath();
-  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#F72798';
-  ctx.fill();
-  ctx.closePath();
-}
-const dramPaddle = () => {
-  ctx.fillStyle = '#0079FF';
-  ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
-}
 const dramBricks = () => {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
@@ -72,6 +65,49 @@ const dramBricks = () => {
   }
 }
 
+// >>>>>>>>>>> pelota
+
+const dramBall = () => {
+  ctx.beginPath();
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = '#F72798';
+  ctx.fill();
+  ctx.closePath();
+}
+
+const ballMovement = () => {
+  ballX += speedx;
+  ballY += speedY;
+
+  const isBallSameXAsPaddle = ballX > paddleX && ballX < paddleX + paddleWidth
+  const isBallTouchingPaddle = ballY + speedY > paddleY
+
+  if (isBallSameXAsPaddle && isBallTouchingPaddle) {
+    speedY = -speedY;
+  }
+
+  console.log('ballY + speedY ', ballY + speedY, ' paddleY ', paddleY)
+
+}
+
+// >>>>>>>>>>>> paleta
+
+const dramPaddle = () => {
+  ctx.fillStyle = '#0079FF';
+  ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
+}
+
+const paddleMovement = () => {
+  if (rightPressed && paddleX < canvas.width - paddleWidth) {
+    paddleX += 7;
+  } 
+  else
+  if (leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+}
+
+// >>>>>>>>>>>> coleciones
 const collisionDetection = () => {
   if (ballX + speedx > canvas.width - ballRadius || ballX + speedx < ballRadius) {
     speedx = -speedx;
@@ -98,34 +134,12 @@ const collisionDetection = () => {
   }
  
 }
-const ballMovement = () => {
-  ballX += speedx;
-  ballY += speedY;
 
-  const isBallSameXAsPaddle = ballX > paddleX && ballX < paddleX + paddleWidth
-  const isBallTouchingPaddle = ballY + speedY > paddleY
-
-  if (isBallSameXAsPaddle && isBallTouchingPaddle) {
-    speedY = -speedY;
-  }
-
-  console.log('ballY + speedY ', ballY + speedY, ' paddleY ', paddleY)
-
-}
-const paddleMovement = () => {
-  if (rightPressed && paddleX < canvas.width - paddleWidth) {
-    paddleX += 7;
-  } 
-  else
-  if (leftPressed && paddleX > 0) {
-    paddleX -= 7;
-  }
-}
-
+// >>>>>>>>>>>> renderizar el canvas
 const cleanCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
+// >>>>>>>>>>>> escuchar eventos de las flechas izquierda y derecha
 const initEvents = () => {
 
   const keyDowndHandler = (e) => {
@@ -156,19 +170,26 @@ const initEvents = () => {
 }
 
 const dram = () => {
-  cleanCanvas()
-  initEvents()
-  // hay que dibujar los elementos
-  dramBall()
-  dramPaddle()
+  cleanCanvas() // renderizar la pelota
+  initEvents() // escucha de los eventos de las flechas izuierda he derecha
+
+  // ladrillos
   dramBricks()
 
-  // colisiones y movimientos
-  collisionDetection()
+  // pelota
+  dramBall()
   ballMovement()
+
+  // paleta
+  dramPaddle()
   paddleMovement()
+
+  // colisiones
+  collisionDetection()
+
+  
   
   window.requestAnimationFrame(dram);
 }
 
-dram();
+// dram();
