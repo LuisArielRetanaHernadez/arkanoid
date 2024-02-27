@@ -7,12 +7,12 @@ canvas.height = 500;
 const ballRadius = 5;
 
 // posicion de la pelota
-const ejeX = canvas.width / 2;
-const ejeY = canvas.height - 30;
+let ejeX = canvas.width / 2;
+let ejeY = canvas.height - 30;
 
 // velocidad de la pelota
-const speedx = 2;
-const speedY = -2;
+let speedx = 2;
+let speedY = -2;
 
 
 const dramBall = () => {
@@ -25,7 +25,11 @@ const dramBall = () => {
 const dramPaddle = () => {}
 const dramBricks = () => {}
 
-const collisionDetection = () => {}
+const collisionDetection = () => {
+  ejeX += speedx;
+  ejeY += speedY;
+  
+}
 const ballMovement = () => {}
 const paddleMovement = () => {}
 
