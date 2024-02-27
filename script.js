@@ -26,11 +26,23 @@ const dramPaddle = () => {}
 const dramBricks = () => {}
 
 const collisionDetection = () => {
+  if (ejeX + speedx > canvas.width - ballRadius || ejeX + speedx < ballRadius) {
+    speedx = -speedx;
+  } 
+
+  if (ejeY + speedY < ballRadius) {
+    speedY = -speedY;
+  }
+
+  // if (ejeY + speedY > canvas.height - ballRadius) {
+  //   document.location.reload();
+  // }
+ 
+}
+const ballMovement = () => {
   ejeX += speedx;
   ejeY += speedY;
-  
 }
-const ballMovement = () => {}
 const paddleMovement = () => {}
 
 const cleanCanvas = () => {
