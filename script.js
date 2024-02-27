@@ -56,18 +56,25 @@ const ballMovement = () => {
   ejeX += speedx;
   ejeY += speedY;
 }
-const paddleMovement = () => {}
+const paddleMovement = () => {
+  if (rightPressed && paddleX < canvas.width - paddleWidth) {
+    paddleX += 7;
+  } 
+  else
+  if (leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+}
 
 const cleanCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 const initEvents = () => {
-  document.addEventListener('keydown' , keyDowndHandler)
-  document.addEventListener('keyup', keyUpHandler)
 
   const keyDowndHandler = (e) => {
     const { key } = e;
+    
     if (key === 'ArrowRight' || key === 'Right') {
       rightPressed = true;
     } 
@@ -87,10 +94,14 @@ const initEvents = () => {
       leftPressed = false;
     }
   }
+
+  document.addEventListener('keydown' , keyDowndHandler)
+  document.addEventListener('keyup', keyUpHandler)
 }
 
 const dram = () => {
   cleanCanvas()
+  initEvents()
   // hay que dibujar los elementos
   dramBall()
   dramPaddle()
