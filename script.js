@@ -41,6 +41,15 @@ const BRICK_STATUS = {
   DESTROYED: 0
 }
 
+const colors = {
+  1: '#F72798',
+  2: '#6420AA',
+  3: '#387ADF',
+  4: 'B31312',
+  5: 'F4CE14',
+  6: '#BB2525'
+}
+
 // >>>>>>>>>>> ladrillos
 
 for (let c = 0; c < brickColumnCount; c++) {
