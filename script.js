@@ -57,7 +57,8 @@ for (let c = 0; c < brickColumnCount; c++) {
   for (let r = 0; r < brickRowCount; r++) {
     const bricjX = c * (brickWidth + brickPadding) + brickOffsetLeft
     const brickY = r * (brickHeight + brickPadding) + brickOffsetTop
-    bricks[c][r] = { x: bricjX, y: brickY, status: BRICK_STATUS.ACTIVE, color: '#0079FF' }
+    const color = Math.floor(Math.random() * 6) + 1
+    bricks[c][r] = { x: bricjX, y: brickY, status: BRICK_STATUS.ACTIVE, color: colors[color] }
   }
 }
 
