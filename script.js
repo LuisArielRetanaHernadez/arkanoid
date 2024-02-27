@@ -7,8 +7,8 @@ canvas.height = 500;
 const ballRadius = 5;
 
 // posicion de la pelota
-let ejeX = canvas.width / 2;
-let ejeY = canvas.height - 30;
+let ballX = canvas.width / 2;
+let ballY = canvas.height - 30;
 
 // velocidad de la pelota
 let speedx = 2;
@@ -27,7 +27,7 @@ let leftPressed = false;
 
 const dramBall = () => {
   ctx.beginPath();
-  ctx.arc(ejeX, ejeY, ballRadius, 0, Math.PI * 2);
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
   ctx.fillStyle = '#F72798';
   ctx.fill();
   ctx.closePath();
@@ -39,11 +39,11 @@ const dramPaddle = () => {
 const dramBricks = () => {}
 
 const collisionDetection = () => {
-  if (ejeX + speedx > canvas.width - ballRadius || ejeX + speedx < ballRadius) {
+  if (ballX + speedx > canvas.width - ballRadius || ballX + speedx < ballRadius) {
     speedx = -speedx;
   } 
 
-  if (ejeY + speedY < ballRadius) {
+  if (ballY + speedY < ballRadius) {
     speedY = -speedY;
   }
 
@@ -53,8 +53,9 @@ const collisionDetection = () => {
  
 }
 const ballMovement = () => {
-  ejeX += speedx;
-  ejeY += speedY;
+  ballX += speedx;
+  ballY += speedY;
+
 }
 const paddleMovement = () => {
   if (rightPressed && paddleX < canvas.width - paddleWidth) {
@@ -74,7 +75,7 @@ const initEvents = () => {
 
   const keyDowndHandler = (e) => {
     const { key } = e;
-    
+
     if (key === 'ArrowRight' || key === 'Right') {
       rightPressed = true;
     } 
