@@ -39,6 +39,15 @@ const BRICK_STATUS = {
   DESTROYED: 0
 }
 
+for (let c = 0; c < brickColumnCount; c++) {
+  bricks[c] = []
+  for (let r = 0; r < brickRowCount; r++) {
+    const bricjX = c * (brickWidth = brickPadding) + brickOffsetLeft
+    const brickY = r * (brickHeight + brickPadding) + brickOffsetTop
+    bricks[c][r] = { x: bricjX, y: brickY, status: BRICK_STATUS.ACTIVE, color: '#0079FF' }
+  }
+}
+
 const dramBall = () => {
   ctx.beginPath();
   ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
