@@ -32,7 +32,7 @@ const brickHeight = 12
 const brickPadding = 2
 const brickOffsetTop = 30
 const brickOffsetLeft = 30
-
+const bricks = []
 
 const dramBall = () => {
   ctx.beginPath();
