@@ -14,6 +14,13 @@ let ejeY = canvas.height - 30;
 let speedx = 2;
 let speedY = -2;
 
+// paleta
+const paddleHeight = 10;
+const paddleWidth = 75;
+
+let paddleX = (canvas.width - paddleWidth) / 2;
+let paddleY = canvas.height - paddleHeight;
+
 
 const dramBall = () => {
   ctx.beginPath();
@@ -22,7 +29,10 @@ const dramBall = () => {
   ctx.fill();
   ctx.closePath();
 }
-const dramPaddle = () => {}
+const dramPaddle = () => {
+  ctx.fillStyle = '#0079FF';
+  ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
+}
 const dramBricks = () => {}
 
 const collisionDetection = () => {
