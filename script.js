@@ -27,8 +27,8 @@ let leftPressed = false;
 // variables ladrillos
 const brickRowCount = 5
 const brickColumnCount = 12
-const brickWidth = 20
-const brickHeight = 12
+const brickWidth = 40
+const brickHeight = 20
 const brickPadding = 2
 const brickOffsetTop = 30
 const brickOffsetLeft = 30
